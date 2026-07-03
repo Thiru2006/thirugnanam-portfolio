@@ -1,0 +1,145 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { Github, GitFork, Star, ExternalLink } from "lucide-react";
+import { Section, Reveal } from "@/components/section";
+import { site } from "@/lib/site";
+
+type Repo = {
+  id: number;
+  name: string;
+  description: string | null;
+  html_url: string;
+  stargazers_count: number;
+  forks_count: number;
+  language: string | null;
+  pushed_at: string;
+};
+
+export function GitHubSection() {
+  const [repos, setRepos] = useState<Repo[] | null>(null);
+  const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch(
+      `https://api.github.com/users/${site.githubUser}/repos?sort=pushed&per_page=6`,
+      { headers: { Accept: "application/vnd.github+json" } },
+    )
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
+      .then((data: Repo[]) => {
+        if (!cancelled) setRepos(data);
+      })
+      .catch(() => {
+        if (!cancelled) setFailed(true);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  return (
+    <Section
+      id="github"
+      eyebrow="github"
+      title="Open source & activity"
+      intro={`Everything below is pulled live from github.com/${site.githubUser}.`}
+    >
+      <div className="grid gap-6 lg:grid-cols-2">
+        <Reveal>
+          <div className="card overflow-hidden p-6">
+            <h3 className="font-mono text-[11px] uppercase tracking-widest text-faint">
+              Contribution graph
+            </h3>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={`https://ghchart.rshah.org/4F46E5/${site.githubUser}`}
+              alt={`GitHub contribution graph for ${site.githubUser}`}
+              className="mt-4 w-full dark:opacity-90"
+              loading="lazy"
+            />
+          </div>
+        </Reveal>
+        <Reveal delay={0.08}>
+          <div className="card overflow-hidden p-6">
+            <h3 className="font-mono text-[11px] uppercase tracking-widest text-faint">
+              Language breakdown
+            </h3>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={`https://github-readme-stats.vercel.app/api/top-langs/?username=${site.githubUser}&layout=compact&hide_border=true&bg_color=00000000&text_color=8b93a7&title_color=6366f1`}
+              alt={`Most used programming languages for ${site.githubUser}`}
+              className="mt-4 w-full"
+              loading="lazy"
+            />
+          </div>
+        </Reveal>
+      </div>
+
+      <div className="mt-6">
+        <h3 className="mb-4 font-mono text-[11px] uppercase tracking-widest text-faint">
+          Recently active repositories
+        </h3>
+        {failed ? (
+          <a
+            href={site.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="card flex items-center justify-between p-6 text-sm text-muted transition-colors hover:border-accent/40"
+          >
+            Couldn&rsquo;t reach the GitHub API right now — browse repositories directly instead.
+            <ExternalLink size={15} />
+          </a>
+        ) : repos === null ? (
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" aria-hidden>
+            {Array.from({ length: 6 }).map((_, i) => (
+              <div key={i} className="card h-28 animate-pulse bg-surface" />
+            ))}
+          </div>
+        ) : (
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {repos.map((repo) => (
+              <a
+                key={repo.id}
+                href={repo.html_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="card group p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/40"
+              >
+                <div className="flex items-center gap-2">
+                  <Github size={14} className="text-faint" />
+                  <span className="truncate font-mono text-sm font-medium group-hover:text-accent">
+                    {repo.name}
+                  </span>
+                </div>
+                <p className="mt-2 line-clamp-2 min-h-[2.4em] text-xs leading-relaxed text-muted">
+                  {repo.description ?? "No description yet."}
+                </p>
+                <div className="mt-3 flex items-center gap-4 font-mono text-[11px] text-faint">
+                  {repo.language && <span>{repo.language}</span>}
+                  <span className="inline-flex items-center gap-1">
+                    <Star size={11} /> {repo.stargazers_count}
+                  </span>
+                  <span className="inline-flex items-center gap-1">
+                    <GitFork size={11} /> {repo.forks_count}
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <Reveal delay={0.1}>
+        <a
+          href={site.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent hover:underline"
+        >
+          View full profile on GitHub <ExternalLink size={14} />
+        </a>
+      </Reveal>
+    </Section>
+  );
+}

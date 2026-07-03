@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 247 248 250;
+  --surface: 255 255 255;
+  --raised: 255 255 255;
+  --ink: 11 13 18;
+  --muted: 91 100 114;
+  --faint: 148 156 170;
+  --line: 228 231 236;
+  --accent: 79 70 229;
+  --accent-soft: 238 239 252;
+}
+
+.dark {
+  --bg: 10 12 17;
+  --surface: 17 20 27;
+  --raised: 22 26 35;
+  --ink: 233 236 242;
+  --muted: 152 162 179;
+  --faint: 100 110 128;
+  --line: 31 36 48;
+  --accent: 129 140 248;
+  --accent-soft: 30 32 58;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-bg text-ink antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+  ::selection {
+    background: rgb(var(--accent) / 0.18);
+  }
+  :focus-visible {
+    outline: 2px solid rgb(var(--accent));
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  .container-content {
+    @apply mx-auto w-full max-w-content px-5 sm:px-8;
+  }
+  .eyebrow {
+    @apply font-mono text-xs uppercase tracking-[0.2em] text-accent;
+  }
+  .card {
+    @apply rounded-2xl border border-line bg-surface;
+  }
+  .chip {
+    @apply inline-flex items-center rounded-full border border-line bg-surface px-3 py-1 font-mono text-xs text-muted;
+  }
+}
+
+/* Signal-trace divider used between sections */
+.trace-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(var(--line)) 15%,
+    rgb(var(--accent) / 0.45) 50%,
+    rgb(var(--line)) 85%,
+    transparent
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
