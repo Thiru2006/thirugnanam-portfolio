@@ -18,5 +18,5 @@ export const site = {
   github: "https://github.com/Thiru2006",
   githubUser: "Thiru2006",
   linkedin: "https://linkedin.com/in/thirugnanam06",
-  resumePath: "/resume.pdf",
+  resumePath: "/Thirugnanam_VS_Resume.pdf",
 } as const;

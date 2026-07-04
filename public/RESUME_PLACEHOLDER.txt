@@ -1,3 +1,0 @@
-Drop your resume PDF in this folder as "resume.pdf".
-(e.g. rename Thirugnanam_VS_Google_SWE_Intern_2027.pdf → resume.pdf)
-All "Download resume" buttons and the command palette point to /resume.pdf.
