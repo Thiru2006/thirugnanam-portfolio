@@ -68,7 +68,7 @@ export const projects: Project[] = [
       "Reliable board-to-board communication over an RS-485 differential bus between an STM32F103C8T6 and an Arduino UNO, with a checksum layer to detect corrupted frames. Covers transceiver wiring, frame design, and error handling on both microcontrollers.",
     stack: ["STM32", "Arduino", "RS-485", "Embedded C", "UART"],
     github: "https://github.com/Thiru2006/stm32-arduino-rs485-checksum-communication",
-    demoVideo: "https://youtu.be/TI3c5p_zpxo", // paste your YouTube demonstration URL here — the "Watch demo" button appears automatically
+    demoVideo: "", // paste your YouTube demonstration URL here — the "Watch demo" button appears automatically
   },
   {
     slug: "smart-task-scheduler",
@@ -76,8 +76,8 @@ export const projects: Project[] = [
     category: "Software",
     tags: ["Java", "Algorithms"],
     overview:
-      "A scheduling application that orders work by combining priority, deadlines, and estimated effort instead of a flat to-do list — surfacing the day's critical tasks first and reflowing as work completes or slips.",
-    stack: ["Java", "OOP", "Data Structures", "MySQL"],
+      "A JavaFX desktop application that schedules tasks through a comparator-driven priority queue, ordering work by priority level and deadline instead of a flat to-do list — so the most urgent items always surface first.",
+    stack: ["Java", "JavaFX", "Priority Queues", "OOP"],
     github: "https://github.com/Thiru2006/SmartTaskScheduler",
   },
   {
@@ -94,10 +94,10 @@ export const projects: Project[] = [
     slug: "job-portal",
     title: "Job Portal",
     category: "Software",
-    tags: ["Full-Stack", "Web"],
+    tags: ["Backend", "Databases"],
     overview:
-      "A full-stack hiring platform covering the complete loop — postings, applications, filtering, and status tracking — with authenticated, role-based dashboards for candidates and recruiters and a relational schema designed around the hiring funnel.",
-    stack: ["React", "Node.js", "Express", "PostgreSQL", "JWT Auth"],
+      "A Java job-portal backend built on JDBC and MySQL, implementing user registration and data operations through a cleanly layered DAO architecture — separating models, data access, and database connection handling.",
+    stack: ["Java", "JDBC", "MySQL", "DAO Pattern"],
     github: "https://github.com/Thiru2006/JOB-PORTAL",
   },
   {

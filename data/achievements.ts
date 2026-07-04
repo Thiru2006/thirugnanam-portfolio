@@ -33,7 +33,7 @@ export const achievements: Achievement[] = [
   {
     year: "2025",
     title: "ASIC tape-out via TinyTapeout",
-    detail: "Took a shift-register design from RTL to GDS through the TinyTapeout TT10 shuttle, with CI/CD-driven verification on GitHub Actions.",
+    detail: "Designed and verified a shift register in Verilog HDL; final GDS generated through the automated TinyTapeout TT10 flow with GitHub Actions CI/CD.",
     icon: "star",
   },
   {
