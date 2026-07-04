@@ -68,7 +68,7 @@ export const projects: Project[] = [
       "Reliable board-to-board communication over an RS-485 differential bus between an STM32F103C8T6 and an Arduino UNO, with a checksum layer to detect corrupted frames. Covers transceiver wiring, frame design, and error handling on both microcontrollers.",
     stack: ["STM32", "Arduino", "RS-485", "Embedded C", "UART"],
     github: "https://github.com/Thiru2006/stm32-arduino-rs485-checksum-communication",
-    demoVideo: "", // paste your YouTube demonstration URL here — the "Watch demo" button appears automatically
+    demoVideo: "https://youtu.be/TI3c5p_zpxo", // paste your YouTube demonstration URL here — the "Watch demo" button appears automatically
   },
   {
     slug: "smart-task-scheduler",
