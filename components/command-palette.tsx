@@ -112,7 +112,7 @@ export function CommandPalette({ open, onOpenChange, onOpenTerminal }: Props) {
               className="flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-muted data-[selected=true]:bg-accent-soft data-[selected=true]:text-ink"
             >
               <FileDown size={15} className="text-faint" />
-              Download resume
+              View resume
             </Command.Item>
             <Command.Item
               onSelect={() => openUrl(site.github)}

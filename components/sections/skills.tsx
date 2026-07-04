@@ -5,8 +5,8 @@ export function Skills() {
   return (
     <Section
       id="skills"
-      eyebrow="skills"
-      title="Technical stack"
+      eyebrow="technical expertise"
+      title="Technical Expertise"
       intro="Organised by domain — no progress bars, just the tools I actually work with."
     >
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

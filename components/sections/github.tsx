@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Github, GitFork, Star, ExternalLink } from "lucide-react";
+import { Github, GitFork, Star, ExternalLink, Pin } from "lucide-react";
 import { Section, Reveal } from "@/components/section";
 import { site } from "@/lib/site";
 
@@ -13,8 +13,17 @@ type Repo = {
   stargazers_count: number;
   forks_count: number;
   language: string | null;
-  pushed_at: string;
 };
+
+/** Pinned repositories, in display order (mirrors the GitHub profile). */
+const pinnedRepos = [
+  "Fake-News-Detection-Using-Machine-Learning",
+  "Phishing-Email-Detection",
+  "SmartTaskScheduler",
+  "automated-attendance-system",
+  "JOB-PORTAL",
+  "tinytapeouttt10shiftregisterchallenge",
+];
 
 export function GitHubSection() {
   const [repos, setRepos] = useState<Repo[] | null>(null);
@@ -23,12 +32,17 @@ export function GitHubSection() {
   useEffect(() => {
     let cancelled = false;
     fetch(
-      `https://api.github.com/users/${site.githubUser}/repos?sort=pushed&per_page=6`,
+      `https://api.github.com/users/${site.githubUser}/repos?per_page=100`,
       { headers: { Accept: "application/vnd.github+json" } },
     )
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
       .then((data: Repo[]) => {
-        if (!cancelled) setRepos(data);
+        if (cancelled) return;
+        const byName = new Map(data.map((r) => [r.name.toLowerCase(), r]));
+        const ordered = pinnedRepos
+          .map((name) => byName.get(name.toLowerCase()))
+          .filter((r): r is Repo => Boolean(r));
+        setRepos(ordered);
       })
       .catch(() => {
         if (!cancelled) setFailed(true);
@@ -43,7 +57,7 @@ export function GitHubSection() {
       id="github"
       eyebrow="github"
       title="Open source & activity"
-      intro={`Everything below is pulled live from github.com/${site.githubUser}.`}
+      intro={`Pinned repositories, contribution activity, and language statistics — pulled live from github.com/${site.githubUser}.`}
     >
       <div className="grid gap-6 lg:grid-cols-2">
         <Reveal>
@@ -68,7 +82,7 @@ export function GitHubSection() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={`https://github-readme-stats.vercel.app/api/top-langs/?username=${site.githubUser}&layout=compact&hide_border=true&bg_color=00000000&text_color=8b93a7&title_color=6366f1`}
-              alt={`Most used programming languages for ${site.githubUser}`}
+              alt={`Most used programming languages for ${site.githubUser}, from GitHub statistics`}
               className="mt-4 w-full"
               loading="lazy"
             />
@@ -77,8 +91,8 @@ export function GitHubSection() {
       </div>
 
       <div className="mt-6">
-        <h3 className="mb-4 font-mono text-[11px] uppercase tracking-widest text-faint">
-          Recently active repositories
+        <h3 className="mb-4 flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest text-faint">
+          <Pin size={12} className="text-accent" /> Pinned repositories
         </h3>
         {failed ? (
           <a
@@ -113,7 +127,7 @@ export function GitHubSection() {
                   </span>
                 </div>
                 <p className="mt-2 line-clamp-2 min-h-[2.4em] text-xs leading-relaxed text-muted">
-                  {repo.description ?? "No description yet."}
+                  {repo.description ?? "See the repository for details."}
                 </p>
                 <div className="mt-3 flex items-center gap-4 font-mono text-[11px] text-faint">
                   {repo.language && <span>{repo.language}</span>}

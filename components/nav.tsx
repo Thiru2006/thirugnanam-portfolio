@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Command, Menu, X } from "lucide-react";
+import { Menu, Search, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { site } from "@/lib/site";
@@ -37,10 +37,8 @@ export function Nav({ onOpenPalette }: { onOpenPalette: () => void }) {
       )}
     >
       <nav className="container-content flex h-16 items-center justify-between" aria-label="Primary">
-        <a href="#top" className="font-mono text-sm font-medium tracking-tight">
-          <span className="text-accent">tvs</span>
-          <span className="text-faint">://</span>
-          <span>{site.shortName.toLowerCase()}</span>
+        <a href="#top" className="font-display text-sm font-semibold tracking-tight">
+          {site.name}
         </a>
 
         <div className="hidden items-center gap-1 md:flex">
@@ -58,11 +56,14 @@ export function Nav({ onOpenPalette }: { onOpenPalette: () => void }) {
         <div className="flex items-center gap-2">
           <button
             onClick={onOpenPalette}
-            className="hidden items-center gap-2 rounded-lg border border-line bg-surface px-3 py-2 font-mono text-xs text-muted transition-colors hover:text-accent sm:inline-flex"
-            aria-label="Open command palette"
+            className="hidden items-center gap-2 rounded-lg border border-line bg-surface px-3 py-2 text-xs text-muted transition-colors hover:text-accent sm:inline-flex"
+            aria-label="Search (Ctrl + K)"
           >
-            <Command size={13} />
-            <span>K</span>
+            <Search size={13} />
+            <span>Search</span>
+            <kbd className="rounded border border-line bg-bg px-1.5 py-0.5 font-mono text-[10px] text-faint">
+              Ctrl K
+            </kbd>
           </button>
           <ThemeToggle />
           <button

@@ -1,5 +1,6 @@
 export type ResearchItem = {
   title: string;
+  venue?: string;
   status: string;
   area: string;
   abstract: string;
@@ -8,35 +9,20 @@ export type ResearchItem = {
 
 export const research: ResearchItem[] = [
   {
-    title: "Smart IMU-Based Parkinson's Symptom Monitoring",
-    status: "IEEE conference paper — under faculty supervision",
-    area: "Biomedical ML · Wearable Sensing",
-    abstract:
-      "Continuous, objective monitoring of Parkinsonian tremor using inertial sensors. The work focuses on methodologically sound time-series classification: subject-wise splits that eliminate temporal leakage, correct preprocessing order, and architectures matched to tremor dynamics.",
-    methods: ["IMU signal processing", "Deep learning (PyTorch)", "Leakage-free evaluation", "IEEE paper format"],
-  },
-  {
-    title: "PID Controller Optimization using Reinforcement Learning",
-    status: "IEEE conference paper — data-driven control of inverted pendulum systems",
+    title: "Data-Driven Control of Inverted Pendulum Systems Using Reinforcement Learning",
+    venue: "2026 IEEE 12th Power India International Conference (PIICON)",
+    status: "Paper submitted — not yet published",
     area: "Reinforcement Learning · Control Systems",
     abstract:
-      "Benchmarking deep RL policies (DDPG, PPO) against classical LQR control on the inverted pendulum, with a custom state-aware reward formulation. Implemented in MATLAB with fully reproducible, programmatically generated results and figures.",
-    methods: ["DDPG / PPO", "LQR baselines", "MATLAB / Simulink", "Custom reward design"],
+      "Benchmarks deep reinforcement-learning policies (DDPG, PPO) against a classical LQR baseline for stabilising inverted pendulum systems, using a custom state-aware reward formulation. All results and figures are generated programmatically for full reproducibility.",
+    methods: ["DDPG / PPO", "LQR baseline", "MATLAB / Simulink", "Custom reward design"],
   },
   {
-    title: "Failure-Oriented TCAD Analysis",
-    status: "Device-simulation study",
-    area: "Semiconductor Devices · TCAD",
+    title: "Smart IMU-Based Parkinson's Symptom Monitoring",
+    status: "Ongoing research under faculty supervision",
+    area: "Biomedical ML · Wearable Sensing",
     abstract:
-      "Physics-level analysis of power semiconductor structures in Synopsys Sentaurus, mapping electric-field distributions and bias regimes associated with device failure, to connect device geometry decisions to reliability outcomes.",
-    methods: ["Sentaurus TCAD", "Device physics", "Breakdown analysis", "Technical reporting"],
-  },
-  {
-    title: "AI-Based Test Generation",
-    status: "Exploratory work",
-    area: "ML for EDA · Verification",
-    abstract:
-      "Exploring machine-learning approaches to generating and prioritising test stimuli for digital designs — aiming verification effort at the state space most likely to hide bugs, instead of uniform random coverage.",
-    methods: ["ML-guided search", "Digital verification", "SystemVerilog", "Coverage analysis"],
+      "Continuous, objective monitoring of Parkinsonian tremor from inertial (IMU) sensor streams. The emphasis is methodological soundness: subject-wise splits that eliminate temporal leakage, correct preprocessing order, and model architectures matched to tremor dynamics.",
+    methods: ["IMU signal processing", "Deep learning (PyTorch)", "Leakage-free evaluation", "IEEE paper format"],
   },
 ];

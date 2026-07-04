@@ -27,9 +27,10 @@ const channels = [
   {
     icon: FileDown,
     label: "Resume",
-    value: "One-page PDF",
+    value: "View the one-page PDF",
     href: site.resumePath,
     hint: "Everything above, condensed",
+    newTab: true,
   },
 ];
 
@@ -46,8 +47,8 @@ export function Contact() {
           <Reveal key={c.label} delay={i * 0.05}>
             <a
               href={c.href}
-              target={c.href.startsWith("http") ? "_blank" : undefined}
-              rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
+              target={c.href.startsWith("http") || (c as { newTab?: boolean }).newTab ? "_blank" : undefined}
+              rel={c.href.startsWith("http") || (c as { newTab?: boolean }).newTab ? "noopener noreferrer" : undefined}
               className="card group flex items-center justify-between gap-4 p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/40"
             >
               <div className="flex items-center gap-4">

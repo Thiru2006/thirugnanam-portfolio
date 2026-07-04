@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Github, ExternalLink, Search, Cpu, BrainCircuit, Code2 } from "lucide-react";
+import { Github, Search, Cpu, BrainCircuit, Code2, CircuitBoard, Youtube } from "lucide-react";
 import { Section } from "@/components/section";
 import { projects, projectCategories, type Project } from "@/data/projects";
 import { cn } from "@/lib/utils";
@@ -10,11 +10,14 @@ import { cn } from "@/lib/utils";
 const categoryIcon = {
   Software: Code2,
   "AI/ML": BrainCircuit,
-  Hardware: Cpu,
+  Embedded: CircuitBoard,
+  VLSI: Cpu,
 } as const;
 
 function ProjectCard({ project }: { project: Project }) {
   const Icon = categoryIcon[project.category];
+  const hasImages = Boolean(project.images && project.images.length > 0);
+
   return (
     <motion.article
       layout
@@ -24,43 +27,51 @@ function ProjectCard({ project }: { project: Project }) {
       transition={{ duration: 0.25 }}
       className="card group flex flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-lg"
     >
-      {/* Image placeholder — replace with a real screenshot in /public/projects/<slug>.png */}
-      <div
-        aria-hidden
-        className="relative flex h-40 items-center justify-center border-b border-line bg-gradient-to-br from-accent-soft to-surface"
-      >
-        <Icon size={30} className="text-accent/60 transition-transform duration-300 group-hover:scale-110" />
-        <span className="absolute bottom-3 right-3 font-mono text-[10px] text-faint">
-          {project.slug}.png
-        </span>
-      </div>
+      {hasImages ? (
+        <div className="grid grid-cols-2 gap-px border-b border-line bg-line">
+          {project.images!.map((img) => (
+            <figure key={img.src} className="bg-surface">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={img.src}
+                alt={img.alt}
+                loading="lazy"
+                className="h-36 w-full object-cover"
+              />
+              <figcaption className="px-3 py-2 font-mono text-[10px] uppercase tracking-wider text-faint">
+                {img.caption}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      ) : (
+        <div
+          aria-hidden
+          className="flex h-32 items-center justify-center border-b border-line bg-gradient-to-br from-accent-soft to-surface"
+        >
+          <Icon
+            size={30}
+            className="text-accent/60 transition-transform duration-300 group-hover:scale-110"
+          />
+        </div>
+      )}
 
       <div className="flex flex-1 flex-col p-6">
-        <div className="flex items-center justify-between gap-3">
-          <h3 className="font-display text-base font-semibold">{project.title}</h3>
-          <span className="chip shrink-0">{project.category}</span>
+        <div className="flex flex-wrap items-center gap-2">
+          {project.tags.map((t) => (
+            <span key={t} className="chip border-accent/30 text-accent">{t}</span>
+          ))}
         </div>
 
-        <p className="mt-2 text-sm leading-relaxed text-muted">{project.overview}</p>
+        <h3 className="mt-3 font-display text-base font-semibold leading-snug">
+          {project.title}
+        </h3>
 
-        <dl className="mt-4 space-y-3 text-sm">
-          <div>
-            <dt className="font-mono text-[11px] uppercase tracking-widest text-faint">Problem</dt>
-            <dd className="mt-1 leading-relaxed text-muted">{project.problem}</dd>
-          </div>
-          <div>
-            <dt className="font-mono text-[11px] uppercase tracking-widest text-faint">Solution</dt>
-            <dd className="mt-1 leading-relaxed text-muted">{project.solution}</dd>
-          </div>
-          <div>
-            <dt className="font-mono text-[11px] uppercase tracking-widest text-faint">Challenges</dt>
-            <dd className="mt-1 leading-relaxed text-muted">{project.challenges}</dd>
-          </div>
-          <div>
-            <dt className="font-mono text-[11px] uppercase tracking-widest text-faint">What I learned</dt>
-            <dd className="mt-1 leading-relaxed text-muted">{project.learnings}</dd>
-          </div>
-        </dl>
+        {project.note && (
+          <p className="mt-1 text-xs font-medium text-accent">{project.note}</p>
+        )}
+
+        <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{project.overview}</p>
 
         <div className="mt-4 flex flex-wrap gap-1.5">
           {project.stack.map((t) => (
@@ -68,24 +79,30 @@ function ProjectCard({ project }: { project: Project }) {
           ))}
         </div>
 
-        <div className="mt-5 flex items-center gap-3 border-t border-line pt-4">
-          {project.github && (
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-ink transition-colors hover:text-accent"
-            >
-              <Github size={15} /> GitHub
-            </a>
-          )}
-          <span
-            className="inline-flex cursor-not-allowed items-center gap-1.5 text-sm text-faint"
-            title="Live demo coming soon"
-          >
-            <ExternalLink size={15} /> Live demo — soon
-          </span>
-        </div>
+        {(project.github || project.demoVideo) && (
+          <div className="mt-5 flex flex-wrap items-center gap-4 border-t border-line pt-4">
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-ink transition-colors hover:text-accent"
+              >
+                <Github size={15} /> GitHub
+              </a>
+            )}
+            {project.demoVideo && (
+              <a
+                href={project.demoVideo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-ink transition-colors hover:text-accent"
+              >
+                <Youtube size={15} /> Watch demo
+              </a>
+            )}
+          </div>
+        )}
       </div>
     </motion.article>
   );
@@ -102,7 +119,8 @@ export function Projects() {
       const inQuery =
         !q ||
         p.title.toLowerCase().includes(q) ||
-        p.summary.toLowerCase().includes(q) ||
+        p.overview.toLowerCase().includes(q) ||
+        p.tags.some((t) => t.toLowerCase().includes(q)) ||
         p.stack.some((s) => s.toLowerCase().includes(q));
       return inCategory && inQuery;
     });
@@ -111,9 +129,9 @@ export function Projects() {
   return (
     <Section
       id="projects"
-      eyebrow="featured projects"
-      title="Things I've built"
-      intro="Selected work across software, machine learning, and hardware — each one taken from problem to working system."
+      eyebrow="engineering projects"
+      title="Engineering Projects"
+      intro="Work across AI/ML, software, embedded systems, and VLSI — from research pipelines to hardware you can hold."
     >
       <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex flex-wrap gap-2" role="tablist" aria-label="Filter projects by category">

@@ -35,13 +35,13 @@ function run(cmd: string): string[] {
     case "skills":
       return skillGroups.map((g) => `${g.group.toLowerCase().padEnd(14)} ${g.items.join(", ")}`);
     case "projects":
-      return projects.map((p) => `• ${p.title} — ${p.summary}`);
+      return projects.map((p) => `• ${p.title} [${p.category}]`);
     case "research":
       return [
-        "• IMU-based Parkinson's symptom monitoring (IEEE track)",
-        "• RL-based control of inverted pendulum systems (IEEE track)",
-        "• Failure-oriented TCAD analysis",
-        "• AI-based test generation",
+        "• Data-Driven Control of Inverted Pendulum Systems Using RL",
+        "  → submitted to 2026 IEEE 12th PIICON",
+        "• Smart IMU-Based Parkinson's Symptom Monitoring",
+        "  → ongoing research under faculty supervision",
       ];
     case "contact":
       return [`email    ${site.email}`, `github   ${site.github}`, `linkedin ${site.linkedin}`];

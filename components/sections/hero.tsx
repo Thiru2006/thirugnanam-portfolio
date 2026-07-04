@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView, useReducedMotion, AnimatePresence } from "framer-motion";
-import { ArrowDown, FileDown } from "lucide-react";
+import { ArrowDown, FileText } from "lucide-react";
 import { TraceField } from "@/components/trace-field";
 import { buttonClass } from "@/components/ui/button";
 import { rotatingRoles, heroStats } from "@/data/profile";
@@ -19,15 +19,21 @@ function RotatingRole() {
   }, [reduce]);
 
   return (
-    <span className="relative inline-flex h-[1.4em] overflow-hidden align-bottom">
-      <AnimatePresence mode="wait">
+    <span className="relative inline-grid overflow-hidden align-bottom">
+      {/* Invisible sizers: the container always fits the widest/tallest title, so nothing ever clips. */}
+      {rotatingRoles.map((role) => (
+        <span key={role} aria-hidden className="invisible col-start-1 row-start-1">
+          {role}
+        </span>
+      ))}
+      <AnimatePresence mode="sync" initial={false}>
         <motion.span
           key={rotatingRoles[index]}
-          initial={reduce ? false : { y: "100%", opacity: 0 }}
+          initial={reduce ? false : { y: "70%", opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          exit={reduce ? undefined : { y: "-100%", opacity: 0 }}
+          exit={reduce ? undefined : { y: "-70%", opacity: 0 }}
           transition={{ duration: 0.35, ease: "easeOut" }}
-          className="text-accent"
+          className="col-start-1 row-start-1 text-accent"
         >
           {rotatingRoles[index]}
         </motion.span>
@@ -92,7 +98,7 @@ export function Hero() {
           transition={{ duration: 0.5 }}
           className="eyebrow"
         >
-          VIT Chennai · B.Tech VLSI Design &amp; Technology · Class of {site.graduation}
+          VIT Chennai · B.Tech VLSI Design &amp; Technology · Expected Graduation: {site.graduation}
         </motion.p>
 
         <motion.h1
@@ -126,9 +132,14 @@ export function Hero() {
             View my work
             <ArrowDown size={15} />
           </a>
-          <a href={site.resumePath} download className={buttonClass("outline")}>
-            <FileDown size={15} />
-            Download resume
+          <a
+            href={site.resumePath}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={buttonClass("outline")}
+          >
+            <FileText size={15} />
+            View resume
           </a>
         </motion.div>
 

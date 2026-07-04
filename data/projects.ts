@@ -1,136 +1,149 @@
 export type Project = {
   slug: string;
   title: string;
-  category: "Software" | "AI/ML" | "Hardware";
-  summary: string;
+  category: "AI/ML" | "Software" | "Embedded" | "VLSI";
+  tags: string[];
   overview: string;
-  problem: string;
-  solution: string;
   stack: string[];
-  challenges: string;
-  learnings: string;
   github?: string;
-  demo?: string;
-  featured: boolean;
+  /** YouTube demonstration link — renders a "Watch demo" button when set. */
+  demoVideo?: string;
+  /**
+   * Real screenshots / hardware photos / circuit diagrams.
+   * Place files under public/projects/ and list them here.
+   * When empty, the card shows a clean icon placeholder (never a filename).
+   */
+  images?: { src: string; alt: string; caption: string }[];
+  note?: string;
 };
-
-const gh = "https://github.com/Thiru2006";
 
 export const projects: Project[] = [
   {
-    slug: "attendance-system",
-    title: "Automated Student Attendance System",
-    category: "Software",
-    summary: "IP-verified, script-driven attendance capture that removes manual roll calls.",
+    slug: "parkinsons-ai-monitoring",
+    title: "Parkinson's AI Monitoring",
+    category: "AI/ML",
+    tags: ["Research", "AI", "Healthcare"],
     overview:
-      "A web-based attendance system built on Google Apps Script that lets students mark presence from their own devices while the backend verifies authenticity.",
-    problem:
-      "Manual attendance wastes class time and is easy to spoof; naive digital forms are even easier to spoof remotely.",
-    solution:
-      "A Google Apps Script backend that validates submissions using network/IP-based checks and session windows, writing verified records straight into structured sheets for faculty.",
-    stack: ["Google Apps Script", "JavaScript", "Google Sheets", "HTML/CSS"],
-    challenges:
-      "Designing spoof-resistance within the constraints of a script platform — rate limits, identity checks, and time-boxed sessions without a dedicated server.",
-    learnings:
-      "Threat-modelling a small system end to end, and shipping something classmates and faculty actually used.",
-    github: gh,
-    featured: true,
+      "A machine-learning pipeline that detects Parkinsonian tremor from wearable IMU sensor streams. Built to research standard: subject-wise splits that eliminate temporal leakage, correct preprocessing order, and deep-learning architectures matched to tremor dynamics.",
+    stack: ["Python", "PyTorch", "Signal Processing", "IMU Sensors", "NumPy"],
+    github: "https://github.com/Thiru2006/imu-parkinsons-tremor-detection",
+  },
+  {
+    slug: "inverted-pendulum-rl",
+    title: "Data-Driven Control of Inverted Pendulum Systems Using Reinforcement Learning",
+    category: "AI/ML",
+    tags: ["Reinforcement Learning", "Control Systems"],
+    overview:
+      "Benchmarks DDPG and PPO policies against a classical LQR controller for stabilising inverted pendulum systems, using a custom state-aware reward function. The accompanying paper has been submitted to the 2026 IEEE 12th Power India International Conference (PIICON).",
+    stack: ["MATLAB", "Simulink", "DDPG / PPO", "LQR", "Reinforcement Learning"],
+    github: "https://github.com/Thiru2006/data-driven-control-inverted-pendulum-rl",
+    note: "Paper submitted to IEEE PIICON 2026",
+  },
+  {
+    slug: "fake-news-detection",
+    title: "Fake News Detection Using Machine Learning",
+    category: "AI/ML",
+    tags: ["NLP", "Classification"],
+    overview:
+      "End-to-end fake-news classifier built on the ISOT dataset with a modular Python architecture: a disciplined data pipeline, text preprocessing and feature extraction, model comparison, and all reported metrics derived strictly from the held-out test set. Fully documented, including an IEEE-format paper and project report.",
+    stack: ["Python", "scikit-learn", "NLP", "pandas", "TF-IDF"],
+    github: "https://github.com/Thiru2006/Fake-News-Detection-Using-Machine-Learning",
+  },
+  {
+    slug: "phishing-email-detection",
+    title: "Phishing Email Detection",
+    category: "AI/ML",
+    tags: ["Security", "NLP"],
+    overview:
+      "Machine-learning system that classifies phishing emails from legitimate mail using engineered text and header features. Developed in structured phases with a modular codebase, rigorous train/test hygiene, and complete documentation from data pipeline to final report.",
+    stack: ["Python", "scikit-learn", "NLP", "Feature Engineering"],
+    github: "https://github.com/Thiru2006/Phishing-Email-Detection",
+  },
+  {
+    slug: "rs485-stm32-arduino",
+    title: "RS-485 Serial Communication between STM32F103C8T6 and Arduino UNO with Checksum Verification",
+    category: "Embedded",
+    tags: ["Embedded", "Protocols"],
+    overview:
+      "Reliable board-to-board communication over an RS-485 differential bus between an STM32F103C8T6 and an Arduino UNO, with a checksum layer to detect corrupted frames. Covers transceiver wiring, frame design, and error handling on both microcontrollers.",
+    stack: ["STM32", "Arduino", "RS-485", "Embedded C", "UART"],
+    github: "https://github.com/Thiru2006/stm32-arduino-rs485-checksum-communication",
+    demoVideo: "", // paste your YouTube demonstration URL here — the "Watch demo" button appears automatically
   },
   {
     slug: "smart-task-scheduler",
     title: "Smart Task Scheduler",
     category: "Software",
-    summary: "Priority-aware task planning with deadline pressure built into the ordering logic.",
+    tags: ["Java", "Algorithms"],
     overview:
-      "A scheduling application that orders work by combining priority, deadlines, and estimated effort instead of a flat to-do list.",
-    problem:
-      "Simple to-do lists treat every task equally; real workloads have deadlines, dependencies, and varying effort.",
-    solution:
-      "A scheduler that scores tasks using priority and time-to-deadline, surfaces the day's critical path first, and reflows automatically as tasks complete or slip.",
+      "A scheduling application that orders work by combining priority, deadlines, and estimated effort instead of a flat to-do list — surfacing the day's critical tasks first and reflowing as work completes or slips.",
     stack: ["Java", "OOP", "Data Structures", "MySQL"],
-    challenges:
-      "Getting the scoring heuristics to feel right — aggressive enough to surface urgent work, stable enough not to reshuffle constantly.",
-    learnings:
-      "Priority queues and comparator design in practice, and how much UX lives inside algorithm tuning.",
-    github: gh,
-    featured: true,
+    github: "https://github.com/Thiru2006/SmartTaskScheduler",
+  },
+  {
+    slug: "automated-attendance-system",
+    title: "Automated Student Attendance System",
+    category: "Software",
+    tags: ["Web", "Automation"],
+    overview:
+      "A web-based attendance system on Google Apps Script that lets students mark presence from their own devices while the backend verifies authenticity with network-based checks and time-boxed sessions, writing verified records straight into structured sheets.",
+    stack: ["Google Apps Script", "JavaScript", "Google Sheets", "HTML/CSS"],
+    github: "https://github.com/Thiru2006/automated-attendance-system",
   },
   {
     slug: "job-portal",
     title: "Job Portal",
     category: "Software",
-    summary: "Full-stack hiring platform with role-based flows for candidates and recruiters.",
+    tags: ["Full-Stack", "Web"],
     overview:
-      "A production-style job portal covering the full hiring loop: postings, applications, filtering, and status tracking.",
-    problem:
-      "Hiring workflows need two very different experiences — candidates searching and applying, recruiters posting and screening — in one coherent system.",
-    solution:
-      "A role-based full-stack application with authenticated candidate and recruiter dashboards, searchable listings, application state tracking, and a relational schema designed around the hiring funnel.",
+      "A full-stack hiring platform covering the complete loop — postings, applications, filtering, and status tracking — with authenticated, role-based dashboards for candidates and recruiters and a relational schema designed around the hiring funnel.",
     stack: ["React", "Node.js", "Express", "PostgreSQL", "JWT Auth"],
-    challenges:
-      "Modelling application state transitions cleanly and enforcing authorization boundaries between the two user roles.",
-    learnings:
-      "Schema design for multi-role products, and why authorization logic belongs in the backend, not the UI.",
-    github: gh,
-    featured: true,
+    github: "https://github.com/Thiru2006/JOB-PORTAL",
   },
   {
-    slug: "parkinsons-monitoring",
-    title: "Parkinson's AI Monitoring",
-    category: "AI/ML",
-    summary: "IMU wearable-sensor pipeline for detecting Parkinsonian tremor patterns.",
+    slug: "student-management-crud",
+    title: "Student Management CRUD",
+    category: "Software",
+    tags: ["Backend", "Databases"],
     overview:
-      "A research-grade machine-learning pipeline that classifies tremor activity from inertial (IMU) sensor streams, developed to IEEE paper standard under faculty supervision.",
-    problem:
-      "Parkinson's symptoms fluctuate between clinic visits; clinicians need objective, continuous measurement from wearable sensors.",
-    solution:
-      "A signal-processing and deep-learning pipeline over accelerometer/gyroscope windows — with leakage-free subject-wise splits, correct scaler fitting, and architecture choices matched to the temporal structure of tremor data.",
-    stack: ["Python", "PyTorch", "Signal Processing", "IMU Sensors", "NumPy"],
-    challenges:
-      "Eliminating temporal data leakage and fixing subtle windowing bugs that silently inflate accuracy — the difference between a demo and defensible research.",
-    learnings:
-      "Rigorous evaluation methodology for time-series ML, and how to audit a pipeline the way a reviewer would.",
-    github: gh,
-    featured: true,
+      "A student records management application implementing clean create, read, update, and delete operations over a relational database, with input validation and a clear separation between data access and interface layers.",
+    stack: ["Java", "MySQL", "JDBC", "OOP"],
+    github: "https://github.com/Thiru2006/Student-Management-CRUD",
   },
   {
-    slug: "tcad-power-semiconductor",
-    title: "TCAD Power Semiconductor Analysis",
-    category: "Hardware",
-    summary: "Failure-oriented device simulation of power semiconductors in Synopsys Sentaurus.",
+    slug: "tinytapeout-tt10",
+    title: "TinyTapeout TT10 Shift Register Challenge",
+    category: "VLSI",
+    tags: ["ASIC", "RTL"],
     overview:
-      "Device-level TCAD study of power semiconductor structures, characterising electrical behaviour and failure-relevant operating regions.",
-    problem:
-      "Power devices fail at the physics level — breakdown, thermal stress, field crowding — long before failures are visible at circuit level.",
-    solution:
-      "Structured Sentaurus TCAD simulations sweeping device geometry and bias conditions to map I-V behaviour, field distributions, and failure-prone regimes, documented as a formal analysis report.",
-    stack: ["Synopsys Sentaurus TCAD", "Device Physics", "SPICE", "LTspice"],
-    challenges:
-      "Getting simulations to converge in extreme operating regions while keeping meshes fine enough to trust the field solutions.",
-    learnings:
-      "How real device physics constrains everything above it — and patience with numerical solvers.",
-    github: gh,
-    featured: true,
+      "A shift-register design taken from RTL all the way to GDS through the TinyTapeout TT10 shuttle — including Verilog implementation, testbench verification, and a CI/CD pipeline on GitHub Actions that runs the full check-and-harden flow on every commit.",
+    stack: ["Verilog", "TinyTapeout", "OpenLane", "GitHub Actions", "GDS"],
+    github: "https://github.com/Thiru2006/tinytapeouttt10shiftregisterchallenge",
   },
   {
-    slug: "fpga-object-detection",
-    title: "FPGA Object Detection",
-    category: "Hardware",
-    summary: "Hardware-accelerated vision pipeline exploring detection on FPGA fabric.",
+    slug: "railway-clock",
+    title: "24-Hour Railway Clock",
+    category: "Embedded",
+    tags: ["Digital Design", "Hardware Build"],
     overview:
-      "An FPGA-based object-detection project mapping vision processing stages onto programmable logic for low-latency inference.",
-    problem:
-      "CPU/GPU inference is power-hungry and often too slow at the edge; FPGAs offer deterministic, parallel, low-power vision processing.",
-    solution:
-      "A pipeline that moves image-processing and detection stages into HDL on FPGA fabric, using streaming architectures and fixed-point arithmetic to fit within resource budgets.",
-    stack: ["Verilog HDL", "Xilinx Vivado", "FPGA", "Fixed-Point DSP", "Python"],
-    challenges:
-      "Trading detection quality against LUT/DSP/BRAM budgets, and debugging with waveforms instead of print statements.",
-    learnings:
-      "Thinking in dataflow and clock cycles — the mindset shift from writing software to designing hardware.",
-    github: gh,
-    featured: true,
+      "A 24-hour digital clock in the style of railway station displays, designed at the circuit level and built as a working breadboard prototype — covering counter design, display driving, and timing, from schematic to functioning hardware.",
+    stack: ["Digital Logic", "Counters", "7-Segment Displays", "Breadboarding"],
+    images: [
+      // Drop your real photos into public/projects/ and uncomment:
+      // { src: "/projects/railway-clock-circuit.png", alt: "24-hour railway clock circuit diagram", caption: "Circuit diagram" },
+      // { src: "/projects/railway-clock-breadboard.jpg", alt: "24-hour railway clock breadboard prototype", caption: "Breadboard prototype" },
+    ],
+  },
+  {
+    slug: "automated-clothes-hanger",
+    title: "Automated Clothes Hanger System with Rain Detection and Shade Mechanism",
+    category: "Embedded",
+    tags: ["Sensors", "Actuators"],
+    overview:
+      "A first-year engineering hardware project: a clothes-hanger system that detects rain with a sensor module and automatically retracts the line under a shade mechanism, combining sensing, actuation, and simple control logic into a complete working build.",
+    stack: ["Rain Sensor", "Motor Control", "Microcontroller", "Mechanism Design"],
+    note: "First-year engineering hardware project",
   },
 ];
 
-export const projectCategories = ["All", "Software", "AI/ML", "Hardware"] as const;
+export const projectCategories = ["All", "AI/ML", "Software", "Embedded", "VLSI"] as const;

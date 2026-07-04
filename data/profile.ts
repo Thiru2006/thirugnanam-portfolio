@@ -16,11 +16,11 @@ export const aboutQuickFacts = [
   { label: "University", value: "VIT Chennai" },
   { label: "Based in", value: "Chennai, India" },
   { label: "Currently", value: "AI & ML Intern, IICT" },
-  { label: "Graduating", value: "2028" },
+  { label: "Expected graduation", value: "2028" },
 ];
 
 export const aboutStory = [
-  "I came to VLSI the long way around — through software. I started by building web apps and automation tools, and kept asking the same question: what actually happens underneath this code? That question pulled me into digital logic, then RTL design, and eventually a full RTL-to-GDS tape-out through TinyTapeout.",
-  "Today I work deliberately across both layers of the stack. On the hardware side, that means Verilog and SystemVerilog, FPGA prototyping on Xilinx and Intel toolchains, and semiconductor device work in Synopsys TCAD. On the software side, it means production-grade full-stack systems and machine learning research — from reinforcement-learning control policies to wearable-sensor models for Parkinson's monitoring.",
-  "The thread connecting all of it is hardware-aware intelligence: AI that respects the physics and constraints of the silicon it runs on. That's the space I want to build my career in — and it's why I split my time between research papers, tape-outs, and shipped software.",
+  "I'm Thirugnanam V S, a B.Tech Electronics Engineering (VLSI Design & Technology) student at VIT Chennai. My interests sit across software engineering, artificial intelligence and machine learning, embedded systems, VLSI design, digital hardware, and research — which sounds broad, but in practice they keep feeding into each other.",
+  "What I enjoy most is building projects where software and hardware have to work together: two microcontrollers talking over RS-485 with checksum verification, a shift register taken through a TinyTapeout tape-out, or a machine-learning model that has to make sense of raw IMU sensor data. Most of what I know came from taking projects like these all the way to finished — working, documented, and on GitHub.",
+  "Along the way I've done software internships in Python and Java, an SDE internship, and I'm currently an AI & ML intern at IICT. On the research side, I work with faculty at VIT Chennai on reinforcement-learning control — with a paper submitted to an IEEE conference — and on IMU-based Parkinson's symptom monitoring. Outside coursework, I lead the technical team of the IEEE Electron Devices Society student branch.",
 ];

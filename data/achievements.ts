@@ -2,7 +2,7 @@ export type Achievement = {
   year: string;
   title: string;
   detail: string;
-  icon: "trophy" | "award" | "star" | "briefcase" | "flask" | "target";
+  icon: "trophy" | "award" | "star" | "briefcase" | "flask";
 };
 
 export const achievements: Achievement[] = [
@@ -14,8 +14,8 @@ export const achievements: Achievement[] = [
   },
   {
     year: "2026",
-    title: "IEEE-track research work",
-    detail: "Two research projects under faculty supervision taken to IEEE conference-paper standard — RL-based control and Parkinson's monitoring.",
+    title: "IEEE conference paper submitted",
+    detail: "First-author research on data-driven control of inverted pendulum systems using reinforcement learning, submitted to the 2026 IEEE 12th Power India International Conference (PIICON).",
     icon: "flask",
   },
   {
@@ -31,10 +31,10 @@ export const achievements: Achievement[] = [
     icon: "briefcase",
   },
   {
-    year: "2026",
-    title: "Samsung PRISM applicant",
-    detail: "Applied to Samsung PRISM, Samsung R&D's industry-academia research program, on the strength of VLSI and ML research work.",
-    icon: "target",
+    year: "2025",
+    title: "ASIC tape-out via TinyTapeout",
+    detail: "Took a shift-register design from RTL to GDS through the TinyTapeout TT10 shuttle, with CI/CD-driven verification on GitHub Actions.",
+    icon: "star",
   },
   {
     year: "2025 — now",

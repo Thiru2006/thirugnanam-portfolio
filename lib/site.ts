@@ -7,16 +7,16 @@ export const site = {
   tagline:
     "Building intelligent software today while designing the hardware of tomorrow.",
   description:
-    "Portfolio of Thirugnanam V S — B.Tech Electronics Engineering (VLSI Design & Technology) student at VIT Chennai. Software developer, AI/ML researcher, and hardware engineer working across RTL design, FPGA, TCAD, and full-stack systems.",
+    "Portfolio of Thirugnanam V S — B.Tech Electronics Engineering (VLSI Design & Technology) student at VIT Chennai. Software developer, AI/ML researcher, and hardware engineer working across RTL design, FPGA, embedded systems, and full-stack software.",
   location: "Chennai, Tamil Nadu, India",
   university: "VIT Chennai",
   degree: "B.Tech Electronics Engineering (VLSI Design & Technology)",
   graduation: "2028",
   cgpa: "9.27",
   rank: 5,
-  email: "hello@thirugnanam.dev", // replace with your real address
+  email: "veluthiru26061976@gmail.com",
   github: "https://github.com/Thiru2006",
   githubUser: "Thiru2006",
-  linkedin: "https://www.linkedin.com/in/thirugnanam-v-s", // update to your exact handle
+  linkedin: "https://linkedin.com/in/thirugnanam06",
   resumePath: "/resume.pdf",
 } as const;

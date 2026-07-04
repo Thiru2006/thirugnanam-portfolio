@@ -1,23 +1,15 @@
 export const currentFocus = [
   {
-    title: "AI & ML Internship",
-    detail: "Applied machine-learning projects and a certified final report at IICT.",
+    title: "Parkinson's AI Monitoring",
+    detail: "IMU-based tremor detection research — signal processing and leakage-free deep-learning evaluation.",
+  },
+  {
+    title: "AI & ML Internship at IICT",
+    detail: "Applied machine-learning projects with full documentation, from data pipeline to final report.",
   },
   {
     title: "Reinforcement Learning",
-    detail: "Deep RL for control systems — DDPG/PPO policies benchmarked against classical controllers.",
-  },
-  {
-    title: "FPGA Acceleration",
-    detail: "Mapping ML and vision workloads onto programmable logic for low-latency inference.",
-  },
-  {
-    title: "TCAD",
-    detail: "Device-level simulation in Synopsys Sentaurus, focused on failure-oriented analysis.",
-  },
-  {
-    title: "Semiconductor Research",
-    detail: "Connecting device physics, RTL design, and system software into one research direction.",
+    detail: "Data-driven control of inverted pendulum systems — DDPG/PPO benchmarked against classical LQR.",
   },
 ];
 

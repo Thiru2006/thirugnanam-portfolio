@@ -24,10 +24,10 @@ npm run build      # production build
 
 ## Before you deploy — 4 quick edits
 
-1. **`lib/site.ts`** — set your real `email`, exact `linkedin` URL, and (after deploying) your final `url`. Everything on the site reads from this one file.
-2. **`public/resume.pdf`** — drop in your resume PDF (rename your existing `Thirugnanam_VS_Google_SWE_Intern_2027.pdf`).
-3. **Project screenshots** — each project card currently shows a designed placeholder. Add real screenshots at `public/projects/<slug>.png` and swap the placeholder block in `components/sections/projects.tsx` for a `next/image`.
-4. **Content review** — all copy lives in `/data/*.ts`. Internship descriptions were written conservatively; tighten them with your real specifics (dates, team names, anything measurable).
+1. **`public/resume.pdf`** — add your resume PDF. Every "View resume" action opens `/resume.pdf` in a new tab.
+2. **RS-485 demo video** — in `data/projects.ts`, paste your YouTube URL into the `demoVideo` field of the RS-485 project. The "Watch demo" button appears automatically once set.
+3. **24-Hour Railway Clock photos** — drop your circuit diagram and breadboard photos into `public/projects/` and uncomment the two `images` entries in `data/projects.ts` (exact filenames are listed there). Until then the card shows a clean icon placeholder — never a filename.
+4. **`lib/site.ts`** — after deploying, set `url` to your final domain and redeploy (fixes OpenGraph, `sitemap.xml`, `robots.txt`).
 
 ## Deploy on Vercel
 
@@ -53,7 +53,7 @@ Content and presentation are fully separated: adding a project, experience, or a
 
 - ⌘K / Ctrl+K command palette (navigation, theme, links)
 - Interactive terminal (open from the palette — try `help`)
-- Live GitHub section (recent repos via the GitHub API, with graceful fallback; contribution graph + language chart)
+- Live GitHub section (pinned repositories via the GitHub API with graceful fallback; contribution graph + real language statistics)
 - Theme toggle (system-aware), scroll progress, back-to-top
 - Project search + category filters
 - SEO: metadata, OpenGraph/Twitter cards, JSON-LD Person schema, `sitemap.xml`, `robots.txt`, web manifest

@@ -1,4 +1,4 @@
-import { FileDown, FileText } from "lucide-react";
+import { ExternalLink, FileText } from "lucide-react";
 import { Section, Reveal } from "@/components/section";
 import { buttonClass } from "@/components/ui/button";
 import { site } from "@/lib/site";
@@ -22,9 +22,14 @@ export function Resume() {
               </p>
             </div>
           </div>
-          <a href={site.resumePath} download className={buttonClass("primary", "shrink-0")}>
-            <FileDown size={15} />
-            Download PDF
+          <a
+            href={site.resumePath}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={buttonClass("primary", "shrink-0")}
+          >
+            <ExternalLink size={15} />
+            View resume
           </a>
         </div>
       </Reveal>
