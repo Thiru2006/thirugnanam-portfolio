@@ -57,7 +57,7 @@ export function GitHubSection() {
       id="github"
       eyebrow="github"
       title="Open source & activity"
-      intro={`Pinned repositories, contribution activity, and language statistics — pulled live from github.com/${site.githubUser}.`}
+      intro={`Pinned repositories and contribution activity pulled live from github.com/${site.githubUser}, along with a snapshot of my technical stack.`}
     >
       <div className="grid gap-6 lg:grid-cols-2">
         <Reveal>
