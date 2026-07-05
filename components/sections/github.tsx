@@ -57,14 +57,19 @@ export function GitHubSection() {
       id="github"
       eyebrow="github"
       title="Open source & activity"
-      intro={`Pinned repositories and contribution activity pulled live from github.com/${site.githubUser}, along with a snapshot of my technical stack.`}
+      intro={`Pinned repositories and contribution activity pulled live from github.com/${site.githubUser}, along with a snapshot of my technical expertise.`}
     >
       <div className="grid gap-6 lg:grid-cols-2">
         <Reveal>
           <div className="card overflow-hidden p-6">
             <h3 className="font-mono text-[11px] uppercase tracking-widest text-faint">
-              Contribution graph
+              Contribution Graph
             </h3>
+
+            <p className="mt-2 text-xs leading-relaxed text-muted">
+              A snapshot of my GitHub activity and development consistency over the past year.
+            </p>
+
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={`https://ghchart.rshah.org/4F46E5/${site.githubUser}`}
@@ -77,12 +82,13 @@ export function GitHubSection() {
         <Reveal delay={0.08}>
           <div className="card overflow-hidden p-6">
             <h3 className="font-mono text-[11px] uppercase tracking-widest text-faint">
-              Technical Stack
+              Technical Expertise
             </h3>
+
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/technical-stack.png"
-              alt="Technical Stack"
+              alt="Technical Expertise"
               className="mt-4 w-full rounded-lg"
               loading="lazy"
             />
