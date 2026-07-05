@@ -61,7 +61,7 @@ export function GitHubSection() {
     >
       <div className="grid gap-6 lg:grid-cols-2">
         <Reveal>
-          <div className="card flex h-full flex-col overflow-hidden p-6">
+          <div className="card overflow-hidden p-6">
             <h3 className="font-mono text-[11px] uppercase tracking-widest text-faint">
               Contribution graph
             </h3>
@@ -69,13 +69,13 @@ export function GitHubSection() {
             <img
               src={`https://ghchart.rshah.org/4F46E5/${site.githubUser}`}
               alt={`GitHub contribution graph for ${site.githubUser}`}
-              className="mt-4 flex-1 w-full object-contain dark:opacity-90"
+              className="mt-4 w-full dark:opacity-90"
               loading="lazy"
             />
           </div>
         </Reveal>
         <Reveal delay={0.08}>
-          <div className="card flex h-full flex-col overflow-hidden p-6">
+          <div className="card overflow-hidden p-6">
             <h3 className="font-mono text-[11px] uppercase tracking-widest text-faint">
               Technical Stack
             </h3>
@@ -83,7 +83,7 @@ export function GitHubSection() {
             <img
               src="/technical-stack.png"
               alt="Technical Stack"
-              className="mt-4 flex-1 w-full rounded-lg object-contain"
+              className="mt-4 w-full rounded-lg"
               loading="lazy"
             />
           </div>
