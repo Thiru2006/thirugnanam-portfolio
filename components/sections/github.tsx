@@ -57,7 +57,7 @@ export function GitHubSection() {
       id="github"
       eyebrow="github"
       title="Open Source & Activity"
-      intro="Explore my featured open-source projects, GitHub activity, and the technologies I use across software engineering, AI/ML, embedded systems, and VLSI."
+      intro="Explore my featured open-source projects, GitHub activity, and the technologies I work with across software engineering, AI/ML, embedded systems, and VLSI."
     >
       <div className="grid gap-6 lg:grid-cols-2">
         <Reveal>
@@ -76,6 +76,8 @@ export function GitHubSection() {
               alt={`GitHub contribution graph for ${site.githubUser}`}
               className="mt-4 w-full dark:opacity-90"
               loading="lazy"
+              decoding="async"
+              draggable={false}
             />
           </div>
         </Reveal>
@@ -85,13 +87,29 @@ export function GitHubSection() {
               Technical Expertise
             </h3>
 
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/technical-stack.png"
-              alt="Overview of my technical expertise across programming, AI/ML, embedded systems, hardware, and software tools."
-              className="mt-4 w-full rounded-lg"
-              loading="lazy"
-            />
+            <div className="mt-4">
+              {/* Light theme image */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/technical-stack-light.png"
+                alt="Overview of my technical expertise across programming, AI/ML, embedded systems, hardware, and software tools."
+                className="block w-full rounded-lg dark:hidden"
+                loading="lazy"
+                decoding="async"
+                draggable={false}
+              />
+
+              {/* Dark theme image */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/technical-stack-dark.png"
+                alt="Overview of my technical expertise across programming, AI/ML, embedded systems, hardware, and software tools."
+                className="hidden w-full rounded-lg dark:block"
+                loading="lazy"
+                decoding="async"
+                draggable={false}
+              />
+            </div>
           </div>
         </Reveal>
       </div>
