@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Github, GitFork, Star, ExternalLink, Pin } from "lucide-react";
 import { Section, Reveal } from "@/components/section";
@@ -87,26 +87,24 @@ export function GitHubSection() {
               Technical Expertise
             </h3>
 
-            <div className="mt-4">
-              {/* Light theme image */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/technical-stack-light.png"
-                alt="Overview of my technical expertise across programming, AI/ML, embedded systems, hardware, and software tools."
+            <div className="relative mt-4">
+              {/* Light Theme */}
+              <Image
+                src="/technical-stack-light.webp"
+                alt="Technical expertise overview"
+                width={1920}
+                height={1080}
                 className="block w-full rounded-lg dark:hidden"
-                loading="lazy"
-                decoding="async"
                 draggable={false}
               />
 
-              {/* Dark theme image */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/technical-stack-dark.png"
-                alt="Overview of my technical expertise across programming, AI/ML, embedded systems, hardware, and software tools."
+              {/* Dark Theme */}
+              <Image
+                src="/technical-stack-dark.webp"
+                alt="Technical expertise overview"
+                width={1920}
+                height={1080}
                 className="hidden w-full rounded-lg dark:block"
-                loading="lazy"
-                decoding="async"
                 draggable={false}
               />
             </div>
