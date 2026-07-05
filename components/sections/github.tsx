@@ -56,8 +56,8 @@ export function GitHubSection() {
     <Section
       id="github"
       eyebrow="github"
-      title="Open source & activity"
-      intro="Explore my pinned repositories, GitHub activity, and a snapshot of the technologies and tools I work with."
+      title="Open Source & Activity"
+      intro="Explore my featured open-source projects, GitHub activity, and the technologies I use across software engineering, AI/ML, embedded systems, and VLSI."
     >
       <div className="grid gap-6 lg:grid-cols-2">
         <Reveal>
