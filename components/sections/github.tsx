@@ -57,7 +57,7 @@ export function GitHubSection() {
       id="github"
       eyebrow="github"
       title="Open source & activity"
-      intro={`Pinned repositories and contribution activity pulled live from github.com/${site.githubUser}, along with a snapshot of my technical expertise.`}
+      intro="Explore my pinned repositories, GitHub activity, and a snapshot of the technologies and tools I work with."
     >
       <div className="grid gap-6 lg:grid-cols-2">
         <Reveal>
@@ -67,7 +67,7 @@ export function GitHubSection() {
             </h3>
 
             <p className="mt-2 text-xs leading-relaxed text-muted">
-              A snapshot of my GitHub activity and development consistency over the past year.
+              GitHub contributions and development activity over the past year.
             </p>
 
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -88,7 +88,7 @@ export function GitHubSection() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/technical-stack.png"
-              alt="Technical Expertise"
+              alt="Overview of my technical expertise across programming, AI/ML, embedded systems, hardware, and software tools."
               className="mt-4 w-full rounded-lg"
               loading="lazy"
             />
