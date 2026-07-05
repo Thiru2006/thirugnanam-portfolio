@@ -77,13 +77,13 @@ export function GitHubSection() {
         <Reveal delay={0.08}>
           <div className="card overflow-hidden p-6">
             <h3 className="font-mono text-[11px] uppercase tracking-widest text-faint">
-              Language breakdown
+              Technical Stack
             </h3>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={`https://github-readme-stats.vercel.app/api/top-langs/?username=${site.githubUser}&layout=compact&hide_border=true&bg_color=00000000&text_color=8b93a7&title_color=6366f1`}
-              alt={`Most used programming languages for ${site.githubUser}, from GitHub statistics`}
-              className="mt-4 w-full"
+              src="/technical-stack.png"
+              alt="Technical Stack"
+              className="mt-4 w-full rounded-lg"
               loading="lazy"
             />
           </div>
