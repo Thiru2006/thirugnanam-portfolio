@@ -80,10 +80,10 @@ export function Nav({ onOpenPalette }: { onOpenPalette: () => void }) {
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="overflow-hidden border-b border-line bg-bg/95 backdrop-blur-md md:hidden"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="absolute left-0 right-0 top-16 z-[9999] border-b border-line bg-bg backdrop-blur-md md:hidden"
           >
             <div className="container-content flex flex-col py-3">
               {links.map((l) => (
